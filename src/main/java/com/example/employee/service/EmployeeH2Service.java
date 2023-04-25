@@ -79,16 +79,8 @@ public class EmployeeH2Service implements EmployeeRepository{
         
      @Override
     public void deleteEmployee(int employeeId){
-            Employee employee = db.queryForObject("select * from EMPLOYEELIST where employeeId =?",new EmployeeRowMapper(),employeeId);
-            if(employee != null){
-                db.update("delete from EMPLOYEELIST where employeeid = ?",employeeId);
-            throw new ResponseStatusException(HttpStatus.OK);
-
-            }else{
-                 
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-
-            }
+            db.update("delete from EMPLOYEELIST where employeeid = ?",employeeId);
+            
 
               
 

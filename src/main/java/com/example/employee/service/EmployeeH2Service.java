@@ -32,7 +32,7 @@ public class EmployeeH2Service implements EmployeeRepository{
     @Override
     public Employee getEmployeeById(int employeeId){
         try{
-            Employee song = db.queryForObject("select * from EMPLOYEELIST where employeeid = ? ",new EmployeeRowMapper(),employeeId);
+            Employee song = db.queryForObject("select * from EMPLOYEELIST where employeeId = ? ",new EmployeeRowMapper(),employeeId);
 
         return song;
 
@@ -45,7 +45,7 @@ public class EmployeeH2Service implements EmployeeRepository{
     @Override
     public Employee addEmployee(Employee employee){
         db.update("insert into EMPLOYEELIST(employeeName,email,department) values(?,?,?)",employee.getEmployeeName(),employee.getEmail(),employee.getDepartment());
-        Employee savedSong =db.queryForObject("select * from EMPLOYEELIST where employeename = ? and email = ? and department = ?  ",new EmployeeRowMapper(),employee.getEmployeeName(),employee.getEmail(),employee.getDepartment());
+        Employee savedSong =db.queryForObject("select * from EMPLOYEELIST where employeeName = ? and email = ? and department = ?  ",new EmployeeRowMapper(),employee.getEmployeeName(),employee.getEmail(),employee.getDepartment());
         return savedSong;
     }
 
@@ -54,10 +54,10 @@ public class EmployeeH2Service implements EmployeeRepository{
     public Employee updateEmployee(int employeeId, Employee employee){
 
         try{
-            Employee checkSong = db.queryForObject("select * from EMPLOYEELIST where employeeid = ? ",new EmployeeRowMapper(),employeeId);
+            Employee checkSong = db.queryForObject("select * from EMPLOYEELIST where employeeId = ? ",new EmployeeRowMapper(),employeeId);
             if(checkSong != null){
             
-            db.update("update EMPLOYEELIST set employeename = ? and email = ? where employeeid = ? ",employee.getEmployeeName(),employee.getEmail(),employeeId);
+            db.update("update EMPLOYEELIST set employeeName = ? and email = ? where employeeId = ? ",employee.getEmployeeName(),employee.getEmail(),employeeId);
              
             }
             return getEmployeeById(employeeId);
